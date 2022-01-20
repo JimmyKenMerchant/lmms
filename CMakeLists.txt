@@ -503,6 +503,11 @@ IF(NOT CMAKE_BUILD_TYPE)
   		"MinSizeRel" "RelWithDebInfo")
 ENDIF()
 
+IF(ARCH_IS_ARM32V8)
+	SET(CMAKE_C_FLAGS "-march=armv8-a -mfloat-abi=hard -mfpu=neon-fp-armv8 ${CMAKE_C_FLAGS}")
+	message(STATUS "Set flags of C language compiler to build for arm32v8.")
+ENDIF(ARCH_IS_ARM32V8)
+
 SET(CMAKE_C_FLAGS "${WERROR_FLAGS} ${CMAKE_C_FLAGS}")
 SET(CMAKE_CXX_FLAGS "-fno-exceptions ${WERROR_FLAGS} ${CMAKE_CXX_FLAGS}")
 SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -DLMMS_DEBUG")
